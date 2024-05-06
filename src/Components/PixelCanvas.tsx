@@ -1,5 +1,5 @@
 // components/PixelCanvas.tsx
-import { useRef, useEffect,useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
