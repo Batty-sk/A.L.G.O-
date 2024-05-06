@@ -15,28 +15,28 @@ const PixelCanvas: React.FC = () => {
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const [startPos,setStartPos] = useState<number []|null>(null)
   const [endPos,setEndPos] = useState<number []|null>(null)
+  const [canvasObj,setCanvasObj] = useState <HTMLCanvasElement|null>(null)
 
-
+    useEffect(()=>{   const canvas = canvasRef.current;
+        setCanvasObj(canvas)
+        if (!canvas) return;
+    
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        
+        ctxRef.current = ctx;
+    
+        canvas.width = 1800;
+        canvas.height = 800;
+    
+        // Initialize drawing styles
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+        // Draw grid lines
+        drawGrid();},[])
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    ctxRef.current = ctx;
-
-    canvas.width = 1800;
-    canvas.height = 800;
-
-    // Initialize drawing styles
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw grid lines
-    drawGrid();
-
     let isDrawing = false;
     
     // Event handlers for drawing
@@ -45,6 +45,13 @@ const PixelCanvas: React.FC = () => {
 
       const x = Math.floor(e.offsetX / PIXEL_SIZE) * PIXEL_SIZE;
       const y = Math.floor(e.offsetY / PIXEL_SIZE) * PIXEL_SIZE;
+      console.log('starting',startPos,'ending',endPos)
+
+      console.log('X',x,'Y',y
+      )
+      if (startPos && endPos )
+        if (x == startPos[0] && y==startPos[1]  || x == endPos[0] && y==endPos[1])
+                return
 
       ctxRef.current.fillStyle = 'black';
       ctxRef.current.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
@@ -66,18 +73,18 @@ const PixelCanvas: React.FC = () => {
       isDrawing = false;
     };
 
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDrawing);
-    canvas.addEventListener('mouseout', stopDrawing);
+    canvasObj?.addEventListener('mousedown', startDrawing);
+    canvasObj?.addEventListener('mousemove', draw);
+    canvasObj?.addEventListener('mouseup', stopDrawing);
+    canvasObj?.addEventListener('mouseout', stopDrawing);
 
     return () => {
-      canvas.removeEventListener('mousedown', startDrawing);
-      canvas.removeEventListener('mousemove', draw);
-      canvas.removeEventListener('mouseup', stopDrawing);
-      canvas.removeEventListener('mouseout', stopDrawing);
+      canvasObj?.removeEventListener('mousedown', startDrawing);
+      canvasObj?.removeEventListener('mousemove', draw);
+      canvasObj?.removeEventListener('mouseup', stopDrawing);
+      canvasObj?.removeEventListener('mouseout', stopDrawing);
     };
-  }, []);
+  }, [startPos,endPos,canvasObj]);
 
   useEffect(()=>{
     const startX = Math.floor(Math.random() * (CANVAS_WIDTH / PIXEL_SIZE)) * PIXEL_SIZE;
@@ -88,8 +95,8 @@ const PixelCanvas: React.FC = () => {
     setStartPos([startX, startY]);
     setEndPos([endX, endY]);
     drawBlock(startX, startY,'red');
-    drawBlock(endX, endY,'green'
-    );    
+    drawBlock(endX, endY,'green')
+
 },[])
 
 const drawBlock = (x: number, y: number,color: string) => {
@@ -104,7 +111,6 @@ const drawBlock = (x: number, y: number,color: string) => {
     ctxRef.current.strokeStyle = GRID_COLOR;
     ctxRef.current.lineWidth = 0.5;
 
-    // Draw vertical grid lines
     for (let x = 0; x <= canvasRef.current!.width; x += PIXEL_SIZE) {
       ctxRef.current.beginPath();
       ctxRef.current.moveTo(x, 0);
@@ -112,7 +118,6 @@ const drawBlock = (x: number, y: number,color: string) => {
       ctxRef.current.stroke();
     }
 
-    // Draw horizontal grid lines
     for (let y = 0; y <= canvasRef.current!.height; y += PIXEL_SIZE) {
       ctxRef.current.beginPath();
       ctxRef.current.moveTo(0, y);
