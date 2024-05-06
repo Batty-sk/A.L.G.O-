@@ -4,12 +4,9 @@ import { useRef, useEffect,useState } from 'react';
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
 
-type FilledPixel ={
-    x: number;
-    y: number;
-  }
 
-let filled_pixels:FilledPixel []=[]
+
+  let filled_pixels: Set<string> = new Set();
   
 const PixelCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -46,8 +43,12 @@ const PixelCanvas: React.FC = () => {
       ctxRef.current.fillStyle = 'black';
       ctxRef.current.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
 
-      filled_pixels.push({x,y})
-      console.log(filled_pixels)
+      const pixelKey = `${x},${y}`;
+
+      if (!filled_pixels.has(pixelKey)){
+        filled_pixels.add(pixelKey)
+        console.log(filled_pixels)
+      }
     };
 
     const startDrawing = (e: MouseEvent) => {
