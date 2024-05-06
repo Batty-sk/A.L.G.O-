@@ -1,8 +1,10 @@
 // components/PixelCanvas.tsx
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
+const CANVAS_WIDTH = 1800;
+const CANVAS_HEIGHT = 800;
 
 
 
@@ -11,6 +13,10 @@ const GRID_COLOR = 'lightgray'; // Color of the grid lines
 const PixelCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const [startPos,setStartPos] = useState<number []|null>(null)
+  const [endPos,setEndPos] = useState<number []|null>(null)
+
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -72,6 +78,25 @@ const PixelCanvas: React.FC = () => {
       canvas.removeEventListener('mouseout', stopDrawing);
     };
   }, []);
+
+  useEffect(()=>{
+    const startX = Math.floor(Math.random() * (CANVAS_WIDTH / PIXEL_SIZE)) * PIXEL_SIZE;
+    const startY = Math.floor(Math.random() * (CANVAS_HEIGHT / PIXEL_SIZE)) * PIXEL_SIZE;
+    const endX = Math.floor(Math.random() * (CANVAS_WIDTH / PIXEL_SIZE)) * PIXEL_SIZE;
+    const endY = Math.floor(Math.random() * (CANVAS_HEIGHT / PIXEL_SIZE)) * PIXEL_SIZE;  
+
+    setStartPos([startX, startY]);
+    setEndPos([endX, endY]);
+    drawBlock(startX, startY,'red');
+    drawBlock(endX, endY,'green'
+    );    
+},[])
+
+const drawBlock = (x: number, y: number,color: string) => {
+    if (!ctxRef.current) return;
+    ctxRef.current.fillStyle = color;
+    ctxRef.current.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+  };
 
   const drawGrid = () => {
     if (!ctxRef.current) return;
