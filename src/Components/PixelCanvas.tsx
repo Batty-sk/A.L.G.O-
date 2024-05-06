@@ -1,6 +1,7 @@
 // components/PixelCanvas.tsx
 import { useRef, useEffect, useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { setCanvasRef } from '@/store/CanvasSlice';
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
 const CANVAS_WIDTH = 1800;
@@ -16,18 +17,22 @@ const PixelCanvas: React.FC = () => {
   const [startPos,setStartPos] = useState<number []|null>(null)
   const [endPos,setEndPos] = useState<number []|null>(null)
   const [canvasObj,setCanvasObj] = useState <HTMLCanvasElement|null>(null)
+  const dispatch = useDispatch()
 
-    useEffect(()=>{   const canvas = canvasRef.current;
+    useEffect(()=>{   
+        const canvas = canvasRef.current;
         setCanvasObj(canvas)
+          // diaspatch the event to store the ref of the canvas to the store
         if (!canvas) return;
     
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         
         ctxRef.current = ctx;
-    
+        dispatch(setCanvasRef(ctx))
         canvas.width = 1800;
         canvas.height = 800;
+
     
         // Initialize drawing styles
         ctx.fillStyle = 'white';
@@ -55,7 +60,7 @@ const PixelCanvas: React.FC = () => {
 
       ctxRef.current.fillStyle = 'black';
       ctxRef.current.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
-
+      
       const pixelKey = `${x},${y}`;
 
       if (!filled_pixels.has(pixelKey)){

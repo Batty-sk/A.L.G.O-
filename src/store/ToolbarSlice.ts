@@ -16,3 +16,7 @@ const Toolbar = createSlice({
         }
     }
 })
+
+
+export const {changeMap, deleteMap} = Toolbar.actions //named export
+export default Toolbar.reducer // default export  */
