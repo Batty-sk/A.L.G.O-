@@ -1,9 +1,16 @@
 // components/PixelCanvas.tsx
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect,useState } from 'react';
 
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
 
+type FilledPixel ={
+    x: number;
+    y: number;
+  }
+
+let filled_pixels:FilledPixel []=[]
+  
 const PixelCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -17,9 +24,8 @@ const PixelCanvas: React.FC = () => {
     
     ctxRef.current = ctx;
 
-    // Set initial canvas size
-    canvas.width = 400;
-    canvas.height = 400;
+    canvas.width = 1800;
+    canvas.height = 800;
 
     // Initialize drawing styles
     ctx.fillStyle = 'white';
@@ -39,6 +45,9 @@ const PixelCanvas: React.FC = () => {
 
       ctxRef.current.fillStyle = 'black';
       ctxRef.current.fillRect(x, y, PIXEL_SIZE, PIXEL_SIZE);
+
+      filled_pixels.push({x,y})
+      console.log(filled_pixels)
     };
 
     const startDrawing = (e: MouseEvent) => {
