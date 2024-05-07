@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setCanvasRef } from '@/store/CanvasSlice';
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
-const CANVAS_WIDTH = 1800;
-const CANVAS_HEIGHT = 800;
+const CANVAS_WIDTH = 1500;
+const CANVAS_HEIGHT = 500;
 
 
 
