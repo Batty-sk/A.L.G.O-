@@ -6,7 +6,7 @@ const ToolbarComp = () => {
     
 
   return (
-    <div className="flex flex-col items-start p-4">
+    <div className="flex flex-col items-start p-4 ">
         <Button variant="outlined" color='error' className='font-bold'  onClick={()=>handleChangeMap()} startIcon={<RestartAltOutlinedIcon/>}>
             Reset
         </Button>

@@ -42,7 +42,9 @@ body {
   border-bottom-right-radius: 120px;
   border-bottom-width: 20px;
   border-bottom-color: rgb(24, 187, 124);
+
 }
+
 
 #canvas-element{
   box-shadow:0px 0px 5px black;

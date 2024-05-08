@@ -4,7 +4,7 @@ const Cat = Caveat({ subsets: ['latin'] ,weight: ['400', '700']})
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Footer = () => {
-  return (
+  return (  
     <div className={`${Cat.className} flex justify-center text-2xl p-5`}>
         <span>Saorav.skumar@gmail.com <FavoriteIcon color={'error'}/></span>
     </div>
