@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setCanvasRef } from '@/store/CanvasSlice';
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
-const CANVAS_WIDTH = 1500;
-const CANVAS_HEIGHT = 500;
+const CANVAS_WIDTH = 1150;
+const CANVAS_HEIGHT = 600;
 
 
 
@@ -30,8 +30,8 @@ const PixelCanvas: React.FC = () => {
         
         ctxRef.current = ctx;
         dispatch(setCanvasRef(ctx))
-        canvas.width = 1800;
-        canvas.height = 800;
+        canvas.width = CANVAS_WIDTH;
+        canvas.height = CANVAS_HEIGHT;
 
     
         // Initialize drawing styles
@@ -131,7 +131,7 @@ const drawBlock = (x: number, y: number,color: string) => {
     }
   };
 
-  return <canvas ref={canvasRef}></canvas>;
+  return <canvas ref={canvasRef} id='canvas-element'></canvas>;
 };
 
 export default PixelCanvas;

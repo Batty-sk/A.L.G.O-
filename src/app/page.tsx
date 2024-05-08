@@ -9,6 +9,7 @@ const page = () => {
     <>
     <Provider store={store} >
     <Header/>
+
     <MainCanvas />
     </Provider>
     </>

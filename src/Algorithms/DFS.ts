@@ -1,7 +1,7 @@
 
 // get the canvas ref and manuplate the canvas pixels
 const CANVAS_WIDTH = 1500
-const CANVAS_HEIGHT = 500;
+const CANVAS_HEIGHT = 600;
 
 export const DFS = (source:number[],target: number[],interval:number,CanvasRef:any)=>
 {

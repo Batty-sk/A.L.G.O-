@@ -1,10 +1,14 @@
 "use client"
 
-import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
 import { useSelector } from 'react-redux'
 import { DFS } from '@/Algorithms/DFS'
+import { eye } from '@/Assests'
+import { Caveat} from 'next/font/google'
+
+import PlayCircleFilledOutlinedIcon from '@mui/icons-material/PlayCircleFilledOutlined';
+
+const Cat = Caveat({ subsets: ['latin'] ,weight: ['400', '700']})
 
 
 const Header = () => {
@@ -27,21 +31,24 @@ const Header = () => {
             // after that the mainCanvas will just have to read that array and show the result. 
     }
   return (
-    <div>
-        <div className="flex ">
-            <div>
-                <MenuItem value={'Dijikstra Algo'}>Dijikstra's Algorithm</MenuItem>
-                <MenuItem value={'A+ Algo'}>A+ Algorithm</MenuItem>
-            </div>
-
-            <div id='run-btn' className=''>
-                <Button onClick={HandleRun}  variant="contained" color="secondary" className='text-black ps-3 pe-3'>
+    <div className='mb-10  ' id='header'>
+        <div className="flex justify-evenly">
+            <div className='flex items-center justify-around '>
+                <h2  className={`font text-3xl ${Cat.className}`}>Choose an Algorithm:</h2>
+                <div className='ms-5 border' style={{boxShadow:'0px 0px 5px green'}}><select name="algos" id="algorithms" className='p-2 w-32'>
+                    <option value="">Dfs</option>
+                    <option value="">Dijisktra's</option>
+                    <option value="">A+</option>
+                    </select></div>
+                <div id='run-btn' className='ms-5'>
+                <Button onClick={HandleRun}  variant="outlined" className='text-black ps-3 pe-3' endIcon={<PlayCircleFilledOutlinedIcon/>}>
                 Run
                 </Button>
             </div>
+            </div>
 
-            <div id='title'>
-                <h1 className='text-5xl font-extrabold'>A.L.G.O</h1>
+            <div id='title' className='text-start '>
+            <img src={eye.src} alt="GIF" />
             </div>
         </div>
 
