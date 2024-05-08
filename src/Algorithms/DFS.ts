@@ -3,7 +3,7 @@
 const CANVAS_WIDTH = 1500
 const CANVAS_HEIGHT = 600;
 
-export const DFS = (source:number[],target: number[],interval:number,CanvasRef:any)=>
+export const DFS = (source:number[],target: number[],FilledPixels:Set<string>,interval:number,CanvasRef:any)=>
 {
     let visited:Set<string> = new Set()
     console.log('coming herere')
@@ -18,6 +18,10 @@ export const DFS = (source:number[],target: number[],interval:number,CanvasRef:a
                 {
                     return
                 }
+            if(FilledPixels.has(`${source[0]},${source[1]}`))
+                {
+                    return
+                }
             visited.add(`${source[0]},${source[1]}`);
 
             setTimeout(() => {
@@ -27,7 +31,7 @@ export const DFS = (source:number[],target: number[],interval:number,CanvasRef:a
                 recursion([source[0], source[1] + 10]);
                 recursion([source[0] - 10, source[1]]);
                 recursion([source[0], source[1] - 10]);
-            }, 800)
+            }, 700)
             
             
         }

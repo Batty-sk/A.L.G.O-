@@ -5,13 +5,16 @@ import { useSelector } from 'react-redux'
 import { DFS } from '@/Algorithms/DFS'
 import { eye } from '@/Assests'
 import { Caveat} from 'next/font/google'
-
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { setRun } from '@/store/CommandLine'
 import PlayCircleFilledOutlinedIcon from '@mui/icons-material/PlayCircleFilledOutlined';
 
 const Cat = Caveat({ subsets: ['latin'] ,weight: ['400', '700']})
 
 
 const Header = () => {
+    const dispatch  = useDispatch()
     const canvasProps = useSelector((store:any)=>store.CanvasSlice)
     if (canvasProps.CanvasRef!=null)
             console.log('running b  ecause the canvas state has been changed in the store')
@@ -20,10 +23,17 @@ const Header = () => {
             'selected algo',x
         )
     }
-
+    useEffect(()=>{
+        console.log('running bruhh',canvasProps)
+        if(canvasProps.Source!=null){
+           if(canvasProps.Source.length)
+            DFS(canvasProps.Source,canvasProps.Target,canvasProps.FilledPixels,2,canvasProps.CanvasRef) 
+    }
+        
+    },[canvasProps.Source])
     const HandleRun = () =>{
         console.log('canvas props',canvasProps)
-        DFS([1,3],[3,5],2,canvasProps.CanvasRef)
+        dispatch(setRun(true))
             // it will first take the all the cordinates of the canvas then pass it to the algorithm, and1 the 
             //starting position 
             // this will initiate the action to run the particular algorithm on the basis of user selection 

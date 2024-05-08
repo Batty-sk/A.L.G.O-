@@ -2,6 +2,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCanvasRef } from '@/store/CanvasSlice';
+import { useSelector } from 'react-redux';
+import { setSource,setFilledPixels,setTarget } from '@/store/CanvasSlice';
 const PIXEL_SIZE = 10; // Size of each pixel block
 const GRID_COLOR = 'lightgray'; // Color of the grid lines
 const CANVAS_WIDTH = 1150;
@@ -9,7 +11,7 @@ const CANVAS_HEIGHT = 600;
 
 
 
-  let filled_pixels: Set<string> = new Set();
+  let Filled_P:Set<string>=new Set()
   
 const PixelCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -17,9 +19,18 @@ const PixelCanvas: React.FC = () => {
   const [startPos,setStartPos] = useState<number []|null>(null)
   const [endPos,setEndPos] = useState<number []|null>(null)
   const [canvasObj,setCanvasObj] = useState <HTMLCanvasElement|null>(null)
+  const RunCommandSubscriber = useSelector((store:any)=>store.Command)
+
   const dispatch = useDispatch()
 
-    useEffect(()=>{   
+  useEffect(()=>{
+    console.log('run Command Initiated !!',startPos,endPos,Filled_P)
+    dispatch(setSource(startPos))
+    dispatch(setTarget(endPos))
+    dispatch(setFilledPixels(Filled_P))
+  },[RunCommandSubscriber]) 
+
+ useEffect(()=>{   
         const canvas = canvasRef.current;
         setCanvasObj(canvas)
           // diaspatch the event to store the ref of the canvas to the store
@@ -63,9 +74,9 @@ const PixelCanvas: React.FC = () => {
       
       const pixelKey = `${x},${y}`;
 
-      if (!filled_pixels.has(pixelKey)){
-        filled_pixels.add(pixelKey)
-        console.log(filled_pixels)
+      if (!Filled_P.has(pixelKey)){
+        Filled_P.add(pixelKey)
+        console.log(Filled_P)
       }
     };
 
