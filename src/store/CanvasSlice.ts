@@ -6,8 +6,8 @@ const CanvasSlice = createSlice({
     initialState:{
         Source:[],
         Target:[],
-        FilledPixels:new Set(),
         CanvasRef:null,
+        FilledP:[]
     },
     reducers:{
         setSource:(state,action)=>{
@@ -22,7 +22,9 @@ const CanvasSlice = createSlice({
             state.Target=action.payload
         },
         setFilledPixels:(state,action)=>{
-            state.FilledPixels = action.payload
+            console.log('heheheh',action.payload)
+           state.FilledP = Array.from(action.payload)
+            
         }
     }
 })

@@ -27,7 +27,7 @@ const Header = () => {
         console.log('running bruhh',canvasProps)
         if(canvasProps.Source!=null){
            if(canvasProps.Source.length)
-            DFS(canvasProps.Source,canvasProps.Target,canvasProps.FilledPixels,2,canvasProps.CanvasRef) 
+            DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP),2,canvasProps.CanvasRef) 
     }
         
     },[canvasProps.Source])

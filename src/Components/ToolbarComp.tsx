@@ -1,10 +1,20 @@
+"use client"
 import Button from '@mui/material/Button'
-import {handleTrash,handleChangeMap} from './Toolbar'
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined';
 import CleaningServicesOutlinedIcon from '@mui/icons-material/CleaningServicesOutlined';
-const ToolbarComp = () => {
-    
+import { deleteMap } from '@/store/ToolbarSlice';
+import { useDispatch } from 'react-redux';
 
+const ToolbarComp = () => {
+  const dispatch = useDispatch()
+    const handleChangeMap = ()=>{
+      if (window)
+        window.location.reload()
+    }
+    const handleTrash = () =>{
+      dispatch(deleteMap(1))
+
+    }
   return (
     <div className="flex flex-col items-start p-4 ">
         <Button variant="outlined" color='error' className='font-bold'  onClick={()=>handleChangeMap()} startIcon={<RestartAltOutlinedIcon/>}>

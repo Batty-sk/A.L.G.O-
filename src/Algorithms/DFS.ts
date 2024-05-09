@@ -1,5 +1,4 @@
 
-// get the canvas ref and manuplate the canvas pixels
 const CANVAS_WIDTH = 1500
 const CANVAS_HEIGHT = 600;
 

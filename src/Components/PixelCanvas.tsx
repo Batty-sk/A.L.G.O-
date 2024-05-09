@@ -20,9 +20,23 @@ const PixelCanvas: React.FC = () => {
   const [endPos,setEndPos] = useState<number []|null>(null)
   const [canvasObj,setCanvasObj] = useState <HTMLCanvasElement|null>(null)
   const RunCommandSubscriber = useSelector((store:any)=>store.Command)
-
+  const CleanCanvas = useSelector((store:any)=>store.Toolbar.trash)
   const dispatch = useDispatch()
-
+  
+  useEffect(()=>{
+    if (CleanCanvas){
+        console.log('oh yeah clean me')
+        if(ctxRef.current !=null){
+            Filled_P.forEach((value:string,value2:string)=>{
+                let arr=value.split(',')
+                ctxRef.current.fillStyle = 'white';
+                ctxRef.current.fillRect(parseInt(arr[0]),parseInt(arr[1]),10,10)
+                
+            })
+            Filled_P.clear()
+        }
+    }
+  },[CleanCanvas])
   useEffect(()=>{
     console.log('run Command Initiated !!',startPos,endPos,Filled_P)
     dispatch(setSource(startPos))
@@ -45,11 +59,11 @@ const PixelCanvas: React.FC = () => {
         canvas.height = CANVAS_HEIGHT;
 
     
-        // Initialize drawing styles
+        //initialize drawing styles
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-        // Draw grid lines
+        // drawing  grid lines
         drawGrid();},[])
 
   useEffect(() => {

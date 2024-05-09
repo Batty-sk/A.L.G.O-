@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const Toolbar = createSlice({
     name:'toolbar',
     initialState:{
-        trash:1,
+        trash:0,
         new_map:1,
     },
     reducers:{
