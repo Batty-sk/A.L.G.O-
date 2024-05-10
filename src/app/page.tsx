@@ -5,9 +5,9 @@ import MainCanvas from '@/Components/MainCanvas'
 import { Provider } from 'react-redux'
 import store from '../store/store'
 import { useEffect,useState } from 'react'
-import RiseLoader from "react-spinners/RiseLoader";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
-//RiseLoader
+//ClimbingBoxLoader
 
 import Footer from '@/Components/Footer'
 
@@ -20,11 +20,11 @@ const page = () => {
     },3000);
   })
   return (
-    loading? <RiseLoader
-    style={{display:'flex',width:'100%',height:'100vh',justifyContent:'center',alignItems:'center'}}
-    color={'red'}
+    loading? <ClimbingBoxLoader
+    style={{display:'flex',width:'100%',height:'100vh',justifyContent:'center',alignItems:'center'  }}
+    color={'#0ABFF4'}
     loading={loading}
-    size={150}
+    size={30}
     aria-label="Loading Spinner"
     data-testid="loader"
   />:
