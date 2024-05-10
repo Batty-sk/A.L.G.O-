@@ -3,6 +3,7 @@
 import Button from '@mui/material/Button'
 import { useSelector } from 'react-redux'
 import { DFS } from '@/Algorithms/DFS'
+import { Draw } from '@/Algorithms/Draw'
 import { eye } from '@/Assests'
 import { Caveat} from 'next/font/google'
 import { useDispatch } from 'react-redux'
@@ -26,8 +27,10 @@ const Header = () => {
     useEffect(()=>{
         console.log('running bruhh',canvasProps)
         if(canvasProps.Source!=null){
-           if(canvasProps.Source.length)
-            DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP),2,canvasProps.CanvasRef) 
+           if(canvasProps.Source.length){
+            let TraversingArray = DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
+            Draw(canvasProps.Source,canvasProps.Target,TraversingArray,500,canvasProps.CanvasRef)
+        }
     }
         
     },[canvasProps.Source])

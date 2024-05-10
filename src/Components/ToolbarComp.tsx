@@ -25,8 +25,12 @@ const ToolbarComp = () => {
         </Button>
 
         <div className='mt-10'>
-            <div className='flex justify-center items-center'><span className='' style={{width:'30px',height:'30px',background:'red',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>You</span></div>
-            <div className='flex justify-center items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'green',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Exit</span></div>
+            <div className='flex items-center'><span className='' style={{width:'30px',height:'30px',background:'red',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>You</span></div>
+            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'green',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Exit</span></div>
+            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'orange',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Way Out</span></div>
+            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'cyan',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Shortest Path</span></div>
+
+
         </div>    
     </div>
   )
