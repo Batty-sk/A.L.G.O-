@@ -1,5 +1,5 @@
 import { PIXEL_SIZE } from "@/constants";
-export const Draw = ( filledPixels: Set<string>, interval: number, canvasRef: any,shortestPath:string[],correctPaths:Array<string []>) => {
+export const Draw = ( filledPixels: Set<string>, interval: number, canvasRef: any,shortestPath:string[] = [],correctPaths:Array<string []> = []) => {
     const pixelsArray = Array.from(filledPixels);
     const ShortestPath = new Set(shortestPath)
     const CorrectPaths = new Set()

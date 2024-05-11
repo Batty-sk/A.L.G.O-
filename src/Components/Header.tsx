@@ -2,6 +2,7 @@
 
 import Button from '@mui/material/Button'
 import { useSelector } from 'react-redux'
+import { BFS } from '@/Algorithms/BFS'
 import { DFS } from '@/Algorithms/DFS'
 import { Draw } from '@/Algorithms/Draw'
 import { eye } from '@/Assests'
@@ -28,8 +29,8 @@ const Header = () => {
         console.log('running bruhh',canvasProps)
         if(canvasProps.Source!=null){
            if(canvasProps.Source.length){
-            let TraversingArray = DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
-            Draw(TraversingArray[0],50,canvasProps.CanvasRef,TraversingArray[1],TraversingArray[2])
+            let TraversingArray = BFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
+            Draw(TraversingArray,50,canvasProps.CanvasRef)
         }
     }
         
