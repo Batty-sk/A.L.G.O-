@@ -4,10 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setCanvasRef } from '@/store/CanvasSlice';
 import { useSelector } from 'react-redux';
 import { setSource,setFilledPixels,setTarget } from '@/store/CanvasSlice';
-const PIXEL_SIZE = 10; // Size of each pixel block
-const GRID_COLOR = 'lightgray'; // Color of the grid lines
-const CANVAS_WIDTH = 1150;
-const CANVAS_HEIGHT = 600;
+import { PIXEL_SIZE,GRID_COLOR,CANVAS_HEIGHT,CANVAS_WIDTH } from '@/constants';
 
 
 
@@ -30,7 +27,7 @@ const PixelCanvas: React.FC = () => {
             Filled_P.forEach((value:string,value2:string)=>{
                 let arr=value.split(',')
                 ctxRef.current.fillStyle = 'white';
-                ctxRef.current.fillRect(parseInt(arr[0]),parseInt(arr[1]),10,10)
+                ctxRef.current.fillRect(parseInt(arr[0]),parseInt(arr[1]),15,15)
                 
             })
             Filled_P.clear()
@@ -61,6 +58,7 @@ const PixelCanvas: React.FC = () => {
     
         //initialize drawing styles
         ctx.fillStyle = 'white';
+        
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     
         // drawing  grid lines

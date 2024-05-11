@@ -29,7 +29,7 @@ const Header = () => {
         if(canvasProps.Source!=null){
            if(canvasProps.Source.length){
             let TraversingArray = DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
-            Draw(canvasProps.Source,canvasProps.Target,TraversingArray,500,canvasProps.CanvasRef)
+            Draw(TraversingArray[0],50,canvasProps.CanvasRef,TraversingArray[1],TraversingArray[2])
         }
     }
         
