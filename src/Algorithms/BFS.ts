@@ -4,6 +4,7 @@ export const BFS = (source: number[], target: number[], filledPixels: Set<string
     const visited: Set<string> = new Set();
     const queue: { point: number[]; path: string[] }[] = [];
     const paths: string[][] = [];
+    const steps : number = Infinity
 
     queue.push({ point: source, path: [] });
 
