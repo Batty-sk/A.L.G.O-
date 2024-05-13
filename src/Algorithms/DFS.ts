@@ -18,7 +18,6 @@ export const DFS = (source: number[], target: number[], filledPixels: Set<string
         }
 
         if (current[0] === target[0] && current[1] === target[1]) {
-            paths +=1 
 
             return [0,[]];
         }
@@ -33,8 +32,6 @@ export const DFS = (source: number[], target: number[], filledPixels: Set<string
             {
                 return [Infinity,[]]
             }
-        if (paths  == 4)
-            return [Infinity,[]]
         console.log('visiting',key)
         if (steps)
         visited.add(key);
@@ -45,27 +42,28 @@ export const DFS = (source: number[], target: number[], filledPixels: Set<string
         let up:any =recursion([current[0], current[1] - PIXEL_SIZE], steps + 1);
 
         let min=Math.min(right[0],down[0],left[0],up[0])
-
+        console.log('minimum',min)
         switch (min){
             case right[0]:
-                hashMap[`${current[0]},${current[1]}`] = {min:min,path:[`${current[0]},${current[1]}`,...right[1]]}
-
+                hashMap[`${current[0]},${current[1]}`] = {min:min+1,path:[`${current[0]},${current[1]}`,...right[1]]}
+                
                 return[1+min,[`${current[0]},${current[1]}`,...right[1]]]
             case down[0]:
-                hashMap[`${current[0]},${current[1]}`] = {min:min,path:[`${current[0]},${current[1]}`,...down[1]]}
+                hashMap[`${current[0]},${current[1]}`] = {min:min+1,path:[`${current[0]},${current[1]}`,...down[1]]}
 
                 return[1+min,[`${current[0]},${current[1]}`,...down[1]]]
             case up[0]:
-                hashMap[`${current[0]},${current[1]}`] = {min:min,path:[`${current[0]},${current[1]}`,...up[1]]}
+                hashMap[`${current[0]},${current[1]}`] = {min:min+1,path:[`${current[0]},${current[1]}`,...up[1]]}
 
                 return[1+min,[`${current[0]},${current[1]}`,...up[1]]]
-            case left[0]:
-                hashMap[`${current[0]},${current[1]}`] = {min:min,path:[`${current[0]},${current[1]}`,...left[1]]}
+            case left[0]: 
+                hashMap[`${current[0]},${current[1]}`] = {min:min+1,path:[`${current[0]},${current[1]}`,...left[1]]}
 
                 return[1+min,[`${current[0]},${current[1]}`,...left[1]]]
 
         }
     };
+
     let result:any=recursion(source, 0)
     
     console.log('minimum path',result[0],result[1])

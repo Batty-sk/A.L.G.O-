@@ -34,7 +34,7 @@ const Header = () => {
         }
     }
         
-    },[canvasProps.Source])
+    },[canvasProps.FilledP])
     const HandleRun = () =>{
         console.log('canvas props',canvasProps)
         dispatch(setRun(true))

@@ -16,7 +16,7 @@ export const Draw = ( filledPixels: Set<string>, interval: number, canvasRef: an
             canvasRef.fillRect(Number(pixel[0]), Number(pixel[1]), PIXEL_SIZE, PIXEL_SIZE);
         }
         else{
-        canvasRef.fillStyle = 'blue' 
+        canvasRef.fillStyle = '#FFDF00' 
         canvasRef.fillRect(Number(pixel[0]), Number(pixel[1]), PIXEL_SIZE, PIXEL_SIZE);
         }
         canvasRef.strokeStyle = 'black';

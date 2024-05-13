@@ -30,7 +30,7 @@ const ToolbarComp = () => {
             <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'green',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Exit</span></div>
             <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'blue',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Traversed</span></div>
 
-            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'cyan',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Shortest Path</span></div>
+            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'cyan',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Path</span></div>
 
 
         </div>    

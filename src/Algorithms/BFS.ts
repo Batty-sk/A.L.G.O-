@@ -1,47 +1,43 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH, PIXEL_SIZE } from "@/constants";
 
-export const BFS = (source: number[], target: number[], filledPixels: Set<string>) => {
-    const visited: Set<string> = new Set();
-    const queue: { point: number[]; path: string[] }[] = [];
-    const paths: string[][] = [];
-    const steps : number = Infinity
+type Position = [number, number];
+type Path = Position[];
 
-    queue.push({ point: source, path: [] });
+export const BFS = (source: Position, target: Position, filledPixels: Set<string>): [Set<string>, Path] => {
+    const visited: Set<string> = new Set();
+    const queue: [Position, Path][] = []; // Queue of [position, path] pairs
+    const directions: Position[] = [[1, 0], [0, 1], [-1, 0], [0, -1]]; // Right, Down, Left, Up
+
+    queue.push([source, [source]]); // Start from the source position with a path containing only the source
 
     while (queue.length > 0) {
-        const { point, path } = queue.shift()!; // Dequeue a point from the queue
+        const [current, path] = queue.shift()!; // Dequeue the front element
 
-        const key = `${point[0]},${point[1]}`;
-        if (
-            point[0] < 0 || point[0] >= CANVAS_WIDTH ||
-            point[1] < 0 || point[1] >= CANVAS_HEIGHT ||
-            visited.has(key) || filledPixels.has(key)
-        ) {
-            continue; // Skip if the point is invalid or already visited
-        }
-
-        // marking  the current point as visited
-
-        // If the current point is the target.add the path to the paths array
-        if (point[0] === target[0] && point[1] === target[1]) {
-            paths.push([...path, key]);
-            continue;
-        }
+        const key = `${current[0]},${current[1]}`;
+        if (visited.has(key)) continue; // Skip if already visited
         visited.add(key);
 
-        // enqueeing the neggihbours
-        const neighbors = [
-            [point[0] + PIXEL_SIZE, point[1]],
-            [point[0], point[1] + PIXEL_SIZE],
-            [point[0] - PIXEL_SIZE, point[1]],
-            [point[0], point[1] - PIXEL_SIZE]
-        ];
+        if (current[0] === target[0] && current[1] === target[1]) {
+            // Reached the target, return the shortest path
+            return [visited, path];
+        }
 
-        for (const neighbor of neighbors) {
-            queue.push({ point: neighbor, path: [...path, key] });
+        // Explore neighboring nodes
+        for (const [dx, dy] of directions) {
+            const nextX = current[0] + dx * PIXEL_SIZE;
+            const nextY = current[1] + dy * PIXEL_SIZE;
+            const nextKey = `${nextX},${nextY}`;
+            
+            if (
+                nextX >= 0 && nextX < CANVAS_WIDTH &&
+                nextY >= 0 && nextY < CANVAS_HEIGHT &&
+                !filledPixels.has(nextKey)
+            ) {
+                // Add the neighboring position to the queue along with the updated path
+                queue.push([[nextX, nextY], [...path, [nextX, nextY]]]);
+            }
         }
     }
-
-    console.log('visited ',queue,visited,paths)
-    return visited;
+    // If target is unreachable, return an empty path
+    return [visited, []];
 };

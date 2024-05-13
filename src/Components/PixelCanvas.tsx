@@ -23,16 +23,23 @@ const PixelCanvas: React.FC = () => {
   useEffect(()=>{
     if (CleanCanvas){
         console.log('oh yeah clean me')
-        if(ctxRef.current !=null){
+        if(ctxRef.current!=null){
             Filled_P.forEach((value:string,value2:string)=>{
                 let arr=value.split(',')
                 ctxRef.current.fillStyle = 'white';
-                ctxRef.current.fillRect(parseInt(arr[0]),parseInt(arr[1]),15,15)
-                
+                ctxRef.current.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
+                drawGrid()
+                if(startPos && endPos){
+                drawBlock(startPos[0], startPos[1],'red');
+                drawBlock(endPos[0], endPos[1],'green')
+                }
+  
             })
+            console.log('filled_p cleared')
             Filled_P.clear()
         }
     }
+
   },[CleanCanvas])
   useEffect(()=>{
     console.log('run Command Initiated !!',startPos,endPos,Filled_P)
