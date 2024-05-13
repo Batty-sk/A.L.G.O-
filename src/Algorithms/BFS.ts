@@ -14,7 +14,7 @@ export const BFS = (source: Position, target: Position, filledPixels: Set<string
         const [current, path] = queue.shift()!; // Dequeue the front element
 
         const key = `${current[0]},${current[1]}`;
-        if (visited.has(key)) continue; // Skip if already visited
+        if (visited.has(key)) continue; 
         visited.add(key);
 
         if (current[0] === target[0] && current[1] === target[1]) {

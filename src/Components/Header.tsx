@@ -29,7 +29,8 @@ const Header = () => {
         console.log('running bruhh',canvasProps)
         if(canvasProps.Source!=null){
            if(canvasProps.Source.length){
-            let TraversingArray = DFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
+            let TraversingArray = BFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
+            console.log('result',TraversingArray)
             Draw(TraversingArray[0],50,canvasProps.CanvasRef,TraversingArray[1])
         }
     }
