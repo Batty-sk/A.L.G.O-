@@ -4,10 +4,10 @@ export const Draw = ( filledPixels: Set<string>, interval: number, canvasRef: an
     const pixelsArray = Array.from(filledPixels);
     const path = Path?new Set(Path):null
     const shortestPath = shortestP?new Set(shortestP):null
-      console.log('filled pixels',filledPixels,'shortest path', path)
+      console.log('filled pixels',filledPixels,'path', path,'shortest Path',shortestPath)
 
     const drawPixelWithDelay = (index: number) => {
-        if (index >= pixelsArray.length) {
+        if (index >= pixelsArray.length) { 
             return;
         }
   

@@ -31,7 +31,7 @@ const Header = () => {
            if(canvasProps.Source.length){
             let TraversingArray = BFS(canvasProps.Source,canvasProps.Target,new Set(canvasProps.FilledP))
             console.log('result',TraversingArray)
-            Draw(TraversingArray[0],50,canvasProps.CanvasRef,TraversingArray[1])
+            Draw(TraversingArray[0],50,canvasProps.CanvasRef,null,TraversingArray[1])
         }
     }
         
