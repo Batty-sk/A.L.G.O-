@@ -51,9 +51,9 @@ const Header = () => {
             <div className='flex items-center justify-around '>
                 <h2  className={`font text-3xl ${Cat.className}`}>Choose an Algorithm:</h2>
                 <div className='ms-5 border' style={{boxShadow:'0px 0px 5px green'}}><select name="algos" id="algorithms" className='p-2 w-32'>
-                    <option value="">Dfs</option>
-                    <option value="">Dijisktra's</option>
-                    <option value="">A+</option>
+                    <option value="">Backtrackking</option>
+                    <option value="">Shortest Path (BFS)</option>
+                    <option value="">A+ Algorithm</option>
                     </select></div>
                 <div id='run-btn' className='ms-5'>
                 <Button onClick={HandleRun}  variant="outlined" className='text-black ps-3 pe-3' endIcon={<PlayCircleFilledOutlinedIcon/>}>
