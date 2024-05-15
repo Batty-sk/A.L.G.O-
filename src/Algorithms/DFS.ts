@@ -11,7 +11,7 @@ export const DFS = (source: number[], target: number[], filledPixels: Set<string
 
         if (
             current[0] <= -1 || current[0] >= CANVAS_WIDTH ||
-            current[1] <= -1 || current[1] >= CANVAS_HEIGHT || paths == 4 ||
+            current[1] <= -1 || current[1] >= CANVAS_HEIGHT ||
              filledPixels.has(key) && steps
         ) {
             return [Infinity,[]];

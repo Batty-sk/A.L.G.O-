@@ -78,7 +78,7 @@ const Header = () => {
         <option value="bfs">Shortest Path (BFS)</option>
       </select></div>
                 <div id='run-btn' className='ms-5'>
-                <Button onClick={HandleRun}  variant="outlined" className='text-black ps-3 pe-3' endIcon={<PlayCircleFilledOutlinedIcon/>}>
+                <Button onClick={HandleRun}  variant="outlined" className='text-black ps-3 pe-3 ' endIcon={<PlayCircleFilledOutlinedIcon/>}>
                 Run
                 </Button>
             </div>

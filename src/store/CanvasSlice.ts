@@ -4,16 +4,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const CanvasSlice = createSlice({
     name:'canvas',
     initialState:{
-        Source:[],
+        Source:[],  
         Target:[],
-        FilledP:[]
+        FilledP:[],
+
     },
     reducers:{
         setSource:(state,action)=>{
             state.Source = action.payload
 
         },
-
+ 
         setTarget:(state,action) =>{
             state.Target=action.payload
         },
