@@ -67,10 +67,10 @@ const Header = () => {
         <div className="flex md:justify-evenly sm:justify-center">
             <div className='flex items-center justify-around '>
                 <h2  className={`font text-3xl ${Cat.className}`}>Choose an Algorithm:</h2>
-                <div className='ms-5 border' style={{boxShadow:'0px 0px 5px green'}}>      <select
+                <div className='ms-5 border' style={{boxShadow:'0px 0px 5px black'}}>      <select
         name="algos"
         id="algorithms"
-        className="p-3 w-36"
+        className="p-3 w-56"
         onChange={handleSelect}
         value={selected}
       >

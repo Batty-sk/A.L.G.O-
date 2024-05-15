@@ -30,10 +30,11 @@ const ToolbarComp = () => {
         <Circle color="red" text="You" />
             
         <Circle color="green" text="Exit" />
-        <Circle color="#FFDF00" text="Traversed" />
-        <Circle color="cyan" text="Path" />
+        <Circle color="blue" text="Path" />
 
-        <Circle color="blue" text="Shortest Path" />
+        <Circle color="#FFDF00" text="Traversed" />
+        <Circle color="cyan" text="Shortest Path" />
+
 
 
         </div>    

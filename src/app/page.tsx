@@ -7,10 +7,13 @@ import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 import CanvaRef from '@/canvarefContext';
 import Header from '@/Components/Header';
 import MainCanvas from '@/Components/MainCanvas';
+import { Caveat} from 'next/font/google';
 import Footer from '@/Components/Footer';
 import { PacmanLoader } from 'react-spinners';
+const Cat = Caveat({ subsets: ['latin'] ,weight: ['400', '700']})
 
 const Page = () => {
+  
   const [loading, setLoading] = useState<boolean>(true);
   const [canvaRef, setCanvaRef] = useState<any>(null);
   const isLargerScreen = useMediaQuery('(min-width:768px)'); // Check if screen width is larger than 768px
@@ -37,6 +40,7 @@ const Page = () => {
           <Provider store={store}>
             <CanvaRef.Provider value={{ canvaRef, setCanvaRef }}>
               <Header />
+
               <MainCanvas />
               <Footer />
             </CanvaRef.Provider>
@@ -55,7 +59,7 @@ const Page = () => {
           <p className='text-2xl text-center'>
           Please Use Larger Screen :)
           </p>
-          <p className=' text-center'>(mobile view is underconstruction)</p>
+          <p className={`text-center ${Cat.className} text-2xl`}>(mobile view is underconstruction)</p>
         </div>
         </div>
       )}

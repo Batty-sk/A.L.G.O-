@@ -13,11 +13,11 @@ export const Draw = ( filledPixels: Set<string>, interval: number, canvasRef: an
   
         const pixel = pixelsArray[index].split(",");
         if (path?.has(pixelsArray[index])){
-            canvasRef.fillStyle = 'cyan';
+            canvasRef.fillStyle = 'blue';
             canvasRef.fillRect(Number(pixel[0]), Number(pixel[1]), PIXEL_SIZE, PIXEL_SIZE);
         }
         else if(shortestPath?.has(pixelsArray[index])){
-            canvasRef.fillStyle = 'blue';
+            canvasRef.fillStyle = 'cyan';
             canvasRef.fillRect(Number(pixel[0]), Number(pixel[1]), PIXEL_SIZE, PIXEL_SIZE);
         }
         else{

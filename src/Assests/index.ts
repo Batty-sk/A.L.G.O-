@@ -1,3 +1,3 @@
 import eye from './eye.gif'
-
-export {eye}
+import lightbulb from './lightbulb.png'
+export {eye,lightbulb}
