@@ -7,8 +7,8 @@ const MainCanvas = () => {
     <>
     <Grid container justifyContent={"center"} className="mb-10">
       
-    <Grid item sm={9} className=" flex" ><PixelCanvas /></Grid>
-    <Grid item sm={2} className="pe-5" style={{boxShadow:'0px 0px 5px black'}}>
+    <Grid item xs={12} lg={9} className=" flex" ><PixelCanvas /></Grid>
+    <Grid item xs={12} lg={2} justifyContent={"center"} className="pe-5"  id='toolbar'>
       <ToolbarComp />
     </Grid>
     </Grid>

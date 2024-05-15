@@ -1,16 +1,19 @@
 // components/PixelCanvas.tsx
 import { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setCanvasRef } from '@/store/CanvasSlice';
+import { useContext } from 'react'
+
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from '@mui/material';
 import { setSource,setFilledPixels,setTarget } from '@/store/CanvasSlice';
 import { PIXEL_SIZE,GRID_COLOR,CANVAS_HEIGHT,CANVAS_WIDTH } from '@/constants';
-
+import CanvaRef from '@/canvarefContext';
 
 
   let Filled_P:Set<string>=new Set()
   
 const PixelCanvas: React.FC = () => {
+  const isMobile =useMediaQuery('400px')
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const [startPos,setStartPos] = useState<number []|null>(null)
@@ -18,23 +21,23 @@ const PixelCanvas: React.FC = () => {
   const [canvasObj,setCanvasObj] = useState <HTMLCanvasElement|null>(null)
   const RunCommandSubscriber = useSelector((store:any)=>store.Command)
   const CleanCanvas = useSelector((store:any)=>store.Toolbar.trash)
+  const { canvaRef, setCanvaRef } = useContext(CanvaRef);
+
+
   const dispatch = useDispatch()
   
   useEffect(()=>{
     if (CleanCanvas){
         console.log('oh yeah clean me')
         if(ctxRef.current!=null){
-            Filled_P.forEach((value:string,value2:string)=>{
-                let arr=value.split(',')
                 ctxRef.current.fillStyle = 'white';
                 ctxRef.current.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
                 drawGrid()
                 if(startPos && endPos){
                 drawBlock(startPos[0], startPos[1],'red');
                 drawBlock(endPos[0], endPos[1],'green')
-                }
   
-            })
+            }
             console.log('filled_p cleared')
             Filled_P.clear()
         }
@@ -45,7 +48,9 @@ const PixelCanvas: React.FC = () => {
     console.log('run Command Initiated !!',startPos,endPos,Filled_P)
     dispatch(setSource(startPos))
     dispatch(setTarget(endPos))
-    dispatch(setFilledPixels(Filled_P))
+const filledPixelsArray = Array.from(Filled_P);
+dispatch(setFilledPixels(filledPixelsArray));
+
   },[RunCommandSubscriber]) 
 
  useEffect(()=>{   
@@ -58,7 +63,8 @@ const PixelCanvas: React.FC = () => {
         if (!ctx) return;
         
         ctxRef.current = ctx;
-        dispatch(setCanvasRef(ctx))
+        setCanvaRef(ctx)
+        //dispatch(setCanvasRef(ctx))
         canvas.width = CANVAS_WIDTH;
         canvas.height = CANVAS_HEIGHT;
 

@@ -11,17 +11,17 @@
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 15px;
 }
 
 
 ::-webkit-scrollbar-track {
-  background-color: #e8f4df; 
+  background-color: #ebdfe7; 
   border-radius: 8px; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #28ffed; 
+  background-color: #e1e1e1; 
   border-radius: 8px; 
 }
 
@@ -32,6 +32,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  background-color:white;
 
 }
 
@@ -41,11 +42,20 @@ body {
   border-bottom-left-radius: 120px;
   border-bottom-right-radius: 120px;
   border-bottom-width: 20px;
-  border-bottom-color: rgb(24, 187, 124);
+  border-bottom-color: #55b3c5c2;
 
 }
 
-
+#toolbar{
+  background-color: white;
+  border-bottom-left-radius: 120px;
+  border-top: 20px solid rgb(58, 54, 66);
+  border-left-width: 20px;
+  border-left-color: #ffb324c2;
+  border-right-width: 20px;
+  border-right-color: #333b3dc2;
+  border-bottom-right-radius: 120px;
+}
 #canvas-element{
   box-shadow:0px 0px 5px black;
 }

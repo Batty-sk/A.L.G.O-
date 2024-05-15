@@ -11,21 +11,20 @@ export const DFS = (source: number[], target: number[], filledPixels: Set<string
 
         if (
             current[0] <= -1 || current[0] >= CANVAS_WIDTH ||
-            current[1] <= -1 || current[1] >= CANVAS_HEIGHT ||
+            current[1] <= -1 || current[1] >= CANVAS_HEIGHT || paths == 4 ||
              filledPixels.has(key) && steps
         ) {
             return [Infinity,[]];
         }
 
         if (current[0] === target[0] && current[1] === target[1]) {
-
+            paths+=1
             return [0,[]];
         }
 
         if (hashMap[`${current[0]},${current[1]}`])
             {
                 return [hashMap[`${current[0]},${current[1]}`].min,hashMap[`${current[0]},${current[1]}`].path]
-                // return the value present for that particular box.
             }
 
         if (visited.has(key))
