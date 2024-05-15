@@ -27,19 +27,36 @@ const ToolbarComp = () => {
         </div>
 
         <div className='mt-10 mb-10'>
-            <div className='flex items-center'><span className='' style={{width:'30px',height:'30px',background:'red',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>You</span></div>
+        <Circle color="red" text="You" />
             
-            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'green',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Exit</span></div>
-            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'#FFDF00',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Traversed</span></div>
-            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'cyan  ',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Path</span></div>
+        <Circle color="green" text="Exit" />
+        <Circle color="#FFDF00" text="Traversed" />
+        <Circle color="cyan" text="Path" />
 
-            <div className='flex items-center mt-5'><span className='' style={{width:'30px',height:'30px',background:'blue  ',borderRadius:'100%',display:'inline-block'}}></span> <span className='ms-3 text-2xl'>Shortest Path</span></div>
+        <Circle color="blue" text="Shortest Path" />
 
 
         </div>    
     </div>
   )
 }
+interface CircleProps {
+  color: string;
+  text: string;
+}
+
+const Circle: React.FC<CircleProps> = ({ color, text }) => {
+  return (
+    <div className="flex items-center mt-5">
+    <div
+      className="w-8 h-8 rounded-full bg-gray-300 shadow-md"
+      style={{ backgroundColor: color }}
+    ></div>
+    <span className="ml-3 text-2xl font-bold">{text}</span>
+  </div>
+  );
+};
+
 //164 163 158
 
 export default ToolbarComp
