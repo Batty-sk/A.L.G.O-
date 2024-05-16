@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Roboto_Condensed} from 'next/font/google'
 import './globals.css'
+import 'tailwindcss/tailwind.css';
+
 
 
 const roboto = Roboto_Condensed({ subsets: ['latin'] ,weight: ['400', '700']})
